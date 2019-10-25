@@ -68,6 +68,7 @@ body{
   margin-bottom: 10px;
   opacity: 0.9;
   transition: 0.2s;
+  position: relative;
 }
 
 
@@ -94,6 +95,15 @@ body{
 .checkboxNappi{
   margin-right: 30px;
   margin-left: 15px;
+}
+
+.deleteBtn{
+  position: absolute;
+  right: 10px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  background-color: #ffd45e;
+  border-radius: 11px;
 }
 
 ::placeholder{

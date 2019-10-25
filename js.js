@@ -15,6 +15,7 @@ addTasks.addEventListener('keyup', function(event){
 //Muuttujat lisättyjen elementtien määrän laskua varten
 var taskNroKierros = -1;
 var checkboxNroKierros = -1;
+var deleteBtnNroKierros = -1;
 
 function newListElement(){
 
@@ -25,6 +26,9 @@ function newListElement(){
 
   checkboxNroKierros = checkboxNroKierros + 1;
   var checkboxNro = checkboxNroKierros;
+
+  deleteBtnNroKierros = deleteBtnNroKierros +1;
+  var deleteBtnNro = deleteBtnNroKierros;
 
   //Haetaan käyttäjän syöttämä sisältö
   var sisältö = document.getElementById('addTasks').value;
@@ -43,9 +47,14 @@ function newListElement(){
   checkbox.setAttribute("onclick", "checkboxAction()");
 
   var deleteBtn = document.createElement('button');
+  deleteBtn.setAttribute("class", "deleteBtn");
+  deleteBtn.setAttribute("name", "deleteBtnNro");
+  deleteBtn.innerHTML = 'Delete';
+  deleteBtn.addEventListener('click', deleteBtnAction);
 
   uusiListaus.appendChild(checkbox);
   uusiListaus.appendChild(document.createTextNode(sisältö));
+  uusiListaus.appendChild(deleteBtn);
 
   //Haetaan listaelementti, johon uusi listaus lisätään
   var lista = document.getElementById('taskList');
@@ -90,4 +99,24 @@ for(var i = 0; i < tasks.length; i++){
     tasks[i].style.color=null;
   }
 }
+}
+
+
+function deleteBtnAction(){
+
+  //Haetaan kaikki luodut delete -napit ja listaukset
+  var deleteButtons = document.getElementsByName('deleteBtnNro');
+  var tasks = document.getElementsByName('taskNro');
+  var target = event.target.getAttribute('name');
+  var ul = document.getElementById('taskList');
+
+  //Käydään listaukset läpi ja määritetään mikä kohta poistetaan
+  for(var i = 0; i < tasks.length; i++){
+    if(target = tasks[i]){
+      ul.removeChild(tasks[i]);
+      break;
+    }
+
+}
+
 }
