@@ -35,7 +35,7 @@ function newListElement(){
 
   //Luodaan uusi kohta To-Do -listaan
   var uusiListaus = document.createElement('li');
-  uusiListaus.setAttribute('name', "taskNro");
+  uusiListaus.setAttribute('name', taskNro);
   //Määritellään uudelle elementille id, jonka mukaan sen tyyli määräytyy
   uusiListaus.setAttribute("class", "liItem");
 
@@ -43,12 +43,12 @@ function newListElement(){
   var checkbox = document.createElement('input');
   checkbox.setAttribute("type", "checkbox");
   checkbox.setAttribute("class", "checkboxNappi");
-  checkbox.setAttribute("name", "checkboxNro");
+  checkbox.setAttribute("name", checkboxNro);
   checkbox.setAttribute("onclick", "checkboxAction()");
 
   var deleteBtn = document.createElement('button');
   deleteBtn.setAttribute("class", "deleteBtn");
-  deleteBtn.setAttribute("name", "deleteBtnNro");
+  deleteBtn.setAttribute("name", deleteBtnNro);
   deleteBtn.innerHTML = 'Delete';
   deleteBtn.addEventListener('click', deleteBtnAction);
 
@@ -58,7 +58,7 @@ function newListElement(){
 
   //Haetaan listaelementti, johon uusi listaus lisätään
   var lista = document.getElementById('taskList');
-  //Lopuksi lisätään uusi listaus näkynviin
+  //Lopuksi lisätään uusi listaus näkyviin
   lista.appendChild(uusiListaus);
 }
 
@@ -105,15 +105,20 @@ for(var i = 0; i < tasks.length; i++){
 function deleteBtnAction(){
 
   //Haetaan kaikki luodut delete -napit ja listaukset
-  var deleteButtons = document.getElementsByName('deleteBtnNro');
-  var tasks = document.getElementsByName('taskNro');
+
+  var deleteButtons = document.getElementsByClassName('deleteBtn');
+
   var target = event.target.getAttribute('name');
   var ul = document.getElementById('taskList');
 
+
   //Käydään listaukset läpi ja määritetään mikä kohta poistetaan
-  for(var i = 0; i < tasks.length; i++){
-    if(target = tasks[i]){
-      ul.removeChild(tasks[i]);
+  for(var i = 0; i < deleteButtons.length; i++){
+    console.log("target",target);
+    console.log("task",deleteButtons[i].name);
+
+    if(target == deleteButtons[i].name){
+      ul.removeChild(deleteButtons[i].parentNode);
       break;
     }
 
