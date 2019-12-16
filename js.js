@@ -81,8 +81,8 @@ else {
 function checkboxAction(){
 
   //Haetaan kaikki luodut checkboxit ja listaukset
-  var checkboxes = document.getElementsByName('checkboxNro');
-  var tasks = document.getElementsByName('taskNro');
+  var checkboxes = document.getElementsByClassName('checkboxNappi');
+  var tasks = document.getElementsByTagName('li');
 
 //Käydään listaukset läpi ja määritetään mikä checkbox klikattiin päälle tai pois
 for(var i = 0; i < tasks.length; i++){
